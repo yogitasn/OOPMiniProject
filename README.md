@@ -4,7 +4,7 @@
 * [Technologies](#technologies)
 * [DataModel](#datamodel)
 * [Setup](#setup)
-* [RunningtheCode](#runningtheCode)
+* [Execution](#execution)
 * [References](#references)
 
 ## General Info
@@ -47,11 +47,13 @@ DATABASE=<DB_NAME>
 
 ```
 
-## RunningtheCode
+## Execution
+
+Navigate to project folder and execute the following commands
 
 Using Python 3.7+, run `pip3 install -r requirements.txt` to install the dependencies.
 
-Commands: Navigate to project folder and execute the following commands
+Execute Commands:
 
 * `flask initdb`
 * `flask bootstrap`
