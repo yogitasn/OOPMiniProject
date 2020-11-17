@@ -271,15 +271,14 @@ def bootstrap_data():
     emp1=Employees(emp_id=5678,name='Nancy',department='Capital Market',title='Teller')
     db.session.add(emp1)
     db.session.commit()
-
+    
     while True:
-         try:
-            # To Test please use 123 or 235 
-            customer_id=input("Please enter customer ID, Use Cust_id=123 or 235: ")
-            if not customer_id:
-                break
+        try:
+            customer_id=int(input("Please enter customer ID, Use Cust_id=123 or 235: "))
             choice=int(input("Please enter 1-Deposit or 2-Withdraw: "))
-            if choice==1:
+            if choice not in [1,2]:
+               logging.error("Please enter numeric input as either 1-Deposit or 2-Withdraw")
+            elif choice==1:
                 b=BankAccount(cust_id=customer_id)
                 amt=int(input("Please enter the amount to deposit: "))
                 b.deposit(cust_id=customer_id,amount=amt)
@@ -288,8 +287,10 @@ def bootstrap_data():
                 b=BankAccount(cust_id=customer_id)
                 amt=int(input("Please enter the amount to withdraw: "))
                 b.withdraw(cust_id=customer_id,amount=amt)
-         except ValueError:
-                print("Oops!  Invalid values  Try again...")
+        except ValueError as e:
+            logging.error(getattr(e, 'message', repr(e)))
+            sys.exit(1)
+          
 
 if __name__ == "__main__":
     app.run()
